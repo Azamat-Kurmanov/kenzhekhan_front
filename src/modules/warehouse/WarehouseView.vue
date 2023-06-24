@@ -204,9 +204,9 @@ export default {
     align-items: center;
   }
   .imgGoods {
-    background-image: url("src/assets/styles/img/");
-    width: 20rem;
-    height: 10rem;
-    padding: 10rem 0 0 0;
+    //background-image: url("src/assets/img/t5o9_e8ol_210601.jpg");
+    //width: 20rem;
+    //height: 10rem;
+    //padding: 10rem 0 0 0;
   }
 </style>
