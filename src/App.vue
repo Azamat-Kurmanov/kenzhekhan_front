@@ -1,14 +1,16 @@
 <template>
-  <div id="app">
-    <h1>Hello Azamat</h1>
+  <div id="app" class="main-container">
+      <WarehouseView/>
   </div>
 </template>
 
 <script>
+import WarehouseView from './modules/warehouse/WarehouseView.vue'
 
 export default {
   name: 'App',
   components: {
+    WarehouseView
   }
 }
 </script>
