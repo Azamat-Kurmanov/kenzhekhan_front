@@ -132,7 +132,7 @@
       </div>
       <div class="col">
         <div class="container-picture">
-          <img class="imgGoods"/>
+          <img src="src/assets/img/1.jpg">
         </div>
       </div>
     </div>
@@ -204,9 +204,9 @@ export default {
     align-items: center;
   }
   .imgGoods {
-    //background-image: url("src/assets/img/t5o9_e8ol_210601.jpg");
-    //width: 20rem;
-    //height: 10rem;
-    //padding: 10rem 0 0 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
   }
 </style>
