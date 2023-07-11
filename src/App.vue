@@ -1,16 +1,20 @@
 <template>
   <div id="app" class="main-container">
-      <WarehouseView/>
+    <initial-form/>
+<!--      <WarehouseView/>-->
   </div>
 </template>
 
 <script>
-import WarehouseView from './modules/warehouse/WarehouseView.vue'
+import initForm from "@/modules/warehouse/initForm";
+// import WarehouseView from './modules/warehouse/WarehouseView.vue'
 
 export default {
   name: 'App',
   components: {
-    WarehouseView
+    'initial-form': initForm
+    // ,
+    // WarehouseView
   }
 }
 </script>
@@ -22,6 +26,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 </style>

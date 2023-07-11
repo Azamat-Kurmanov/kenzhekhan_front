@@ -3,84 +3,113 @@
     <div class="container">
       <div class="row">
         <div class="col-sm" style="text-align:left;">
-          <b-dropdown text="Фильтр">
-            <b-dropdown-item class="dropdown-item-class">
-              <div class="form-group">
-                <b-form-group :label="seasonTxt" class="small">
-                  <multiselect
-                      v-model="goodsInStock"
-                      :options="goodsArr"
-                      placeholder="Сезон"
-                      :allow-empty="false"
-                      :show-labels="false"
-                      width="100%"
-                      @input="loadGoods"
-                  />
-                </b-form-group>
+          <b-button-toolbar aria-label="Toolbar with button groups and dropdown menu">
+            <b-dropdown class="filter-dropdown" variant="default" ref="drop">
+              <template #button-content>
+                <span class="lc"><i class="icon icon-filter"></i> Фильтр</span><span class="rc"><i class="icon icon-keyboard"></i></span>
+              </template>
+              <div class="filter-body">
+                  <div class="top-content">
+                    <span>Параметры фильтра</span>
+                    <i class="icon icon-close" @click="$refs.drop.hide(true)"></i>
+                  </div>
+                  <div class="filter-block">
+                    <b-form-group :label="goodsTypeTxt" class="small">
+                      <multiselect
+                          v-model="goodsType"
+                          track-by="title"
+                          label="title"
+                          placeholder="Тип товара"
+                          :options="goodsTypeArr"
+                          :searchable="true"
+                          :allow-empty="true"
+                          :show-labels="false"
+                          @input="loadGoods"
+                          ref="goodsTypeRef"
+                      >
+                      </multiselect>
+                    </b-form-group>
+                  </div>
+                  <div class="filter-block">
+                    <b-form-group :label="seasonTxt" class="small">
+                      <multiselect
+                          v-model="seasons"
+                          track-by="title"
+                          label="title"
+                          placeholder="Сезон"
+                          :options="seasonsArr"
+                          :searchable="true"
+                          :allow-empty="false"
+                          :show-labels="false"
+                          @input="loadGoods"
+                          ref="seasonRef"
+                      >
+                      </multiselect>
+                    </b-form-group>
+                  </div>
+                  <div class="filter-block">
+                    <b-form-group :label="warehouseTxt" class="small">
+                      <multiselect
+                          v-model="storage"
+                          track-by="title"
+                          label="title"
+                          placeholder="Склад"
+                          :options="storageArr"
+                          :searchable="true"
+                          :allow-empty="false"
+                          :show-labels="false"
+                          @input="loadGoods"
+                          ref="pressInStockRef"
+                      >
+                      </multiselect>
+                    </b-form-group>
+                  </div>
+                  <div class="filter-block">
+                    <b-form-group :label="pressTxt" class="small">
+                    <multiselect
+                        v-model="pressInStock"
+                        track-by="title"
+                        label="title"
+                        placeholder="№ Пресса"
+                        :options="pressInStockArr"
+                        :searchable="true"
+                        :allow-empty="false"
+                        :show-labels="false"
+                        @input="loadGoods"
+                        ref="pressInStockRef"
+                    >
+                    </multiselect>
+                  </b-form-group>
+                  </div>
+                  <div class="filter-block">
+                    <b-form-group :label="articleTxt" class="small">
+                      <multiselect
+                          v-model="article"
+                          track-by="title"
+                          label="title"
+                          placeholder="Артикул"
+                          :options="articleArr"
+                          :searchable="true"
+                          :allow-empty="false"
+                          :show-labels="false"
+                          @input="loadGoods"
+                          ref="articleRef"
+                      >
+                      </multiselect>
+                    </b-form-group>
+                  </div>
               </div>
-            </b-dropdown-item>
-            <b-dropdown-item class="dropdown-item-class">
-              <div class="form-group">
-                <b-form-group :label="articleTxt" class="small">
-                  <multiselect
-                      v-model="goodsInStock"
-                      :options="goodsArr"
-                      placeholder="Артикул"
-                      :allow-empty="false"
-                      :show-labels="false"
-                      width="100%"
-                      @input="loadGoods"
-                  />
-                </b-form-group>
-              </div>
-            </b-dropdown-item>
-            <b-dropdown-item class="dropdown-item-class">
-              <div class="form-group">
-                <b-form-group :label="pressTxt" class="small">
-                  <multiselect
-                      v-model="goodsInStock"
-                      :options="goodsArr"
-                      placeholder="Пресс"
-                      :allow-empty="false"
-                      :show-labels="false"
-                      width="100%"
-                      @input="loadGoods"
-                  />
-                </b-form-group>
-              </div>
-            </b-dropdown-item>
-            <b-dropdown-item class="dropdown-item-class">
-              <div class="form-group">
-                <b-form-group :label="warehouseTxt" class="small">
-                  <multiselect
-                      v-model="goodsInStock"
-                      :options="goodsArr"
-                      placeholder="Склад"
-                      :allow-empty="false"
-                      :show-labels="false"
-                      width="100%"
-                      @input="loadGoods"
-                  />
-                </b-form-group>
-              </div>
-            </b-dropdown-item>
-          </b-dropdown>
-        </div>
-        <div class="col-sm" style="text-align:right;">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary">Склад</button>
-            <button type="button" class="btn btn-secondary">Поставщик</button>
-            <button type="button" class="btn btn-secondary">Категория</button>
-          </div>
+            </b-dropdown>
+            <b-button-group class="mx-1">
+              <b-button>Поставщик</b-button>
+              <b-button>Категория</b-button>
+              <b-button>Справочники</b-button>
+            </b-button-group>
+          </b-button-toolbar>
         </div>
       </div>
     </div>
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <p>{{ title }}</p>
-      </div>
-    </div>
     <div class="row">
       <div class="col">
         <div class="input-group mb-3">
@@ -132,7 +161,7 @@
       </div>
       <div class="col">
         <div class="container-picture">
-          <img src="src/assets/img/1.jpg">
+          <img src="img/1.jpg" class="imgGoods"/>
         </div>
       </div>
     </div>
@@ -144,6 +173,7 @@
 import Multiselect from 'vue-multiselect';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import KenzhekhanService from '../../services/KenzhekhanService'
 
 export default {
   name: 'WarehouseView',
@@ -154,24 +184,70 @@ export default {
   data() {
     return {
       title: 'Товары по складам',
-      goodsInStock: null,
+      seasons: null,
+      goodsType: null,
+      pressInStock: null,
+      storage: null,
+      article: null,
+      tbls: ['seasons', 'warehouse', 'goodsKind', 'typeOfGoods', 'subTypeOfGoods', 'gender'],
       goodsArr: [],
+      seasonsArr: [],
+      goodsTypeArr: [],
+      pressInStockArr: [],
+      storageArr: [],
+      articleArr: [],
       goodsInStockTxt: 'Товары по складам',
       seasonTxt: 'Сезон',
-      articleTxt: 'Артикул',
+      goodsTypeTxt: 'Тип товара',
       pressTxt: '№ пресса',
+      articleTxt: 'Артикул',
       warehouseTxt: 'Склад',
-      collapseAll: true
+      collapseAll: true,
+      API: process.env.API
     }
   },
   computed: {},
   methods: {
     loadGoods(){
       return null
-    }
+    },
+
+    async getDicts() {
+      if (this.tbls) {
+        try {
+          console.log('KenzhekhanService.getMainLink(): ' + KenzhekhanService.getMainLink() + '/api/v1/values/' + this.tbls[0]);
+          const seasons = fetch(KenzhekhanService.getMainLink() + '/api/v1/values/' + this.tbls[0]); // ---извлекает справочник Сезоны
+          const stores = fetch(KenzhekhanService.getMainLink() + '/api/v1/values/' + this.tbls[1]);  // ---извлекает справочник Складов
+          const goodsType = fetch(KenzhekhanService.getMainLink() + '/api/v1/values/' + this.tbls[2]);
+          Promise.all([seasons, stores, goodsType]) // ---метод позволяющий одновременно обращаться через ajax по двум ссылкам
+              .then(values => {
+                return Promise.all(values.map(resp => resp.json()));
+              }).then(async ([seasonsList, storesList, goodsTypeList]) => {
+            this.seasonsArr = seasonsList;
+            this.storageArr = storesList;
+            this.goodsTypeArr = goodsTypeList;
+            // console.log('seasonsList: ' + JSON.stringify(seasonsList));
+            // console.log('storesList: ' + JSON.stringify(storesList));
+            // console.log('goodsTypeList: ' + JSON.stringify(goodsTypeList));
+          });
+        } catch (error) {
+          this.makeToast('danger', 'Ошибка запроса по Справочникам', error.toString());
+        }
+      }
+    },
+
+    makeToast(title, tostbody) {
+      this.$bvToast.toast(tostbody, {
+        title: title,
+        autoHideDelay: 5000,
+        appendToast: true
+      });
+    }, // сообщение с ошибкой
   },
   watch: {},
-  mounted() {}
+  created() {
+    this.getDicts();
+  }
 }
 </script>
 
@@ -207,6 +283,39 @@ export default {
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
-    width: 150px;
+    width: 140px;
+  }
+  .filter-dropdown{
+    border: 1px solid #e2e5eb;
+    width: 200px;
+    background-color: #f7f9fc;
+    color: #5c7f96;
+  }
+  .dropdown-menu{
+    width: 440px;
+    background-color: #f7f9fc;
+    border: 1px solid #e2e5eb;
+    padding: 20px;
+    box-shadow: 7px 7px 7px rgba(0,0,0,.15);
+    top: 1px!important;
+  }
+  .form-group legend {
+    color: #5c7f96;
+    padding: 2px;
+    margin-top: 12px;
+  }
+  .top-content span{
+    color: #5c7f96;
+  }
+  //.filter-dropdown{
+  //  height: 33px;
+  //}
+  .btn-secondary{
+    background-color: #f7f9fc;
+    border: 1px solid #e2e5eb;
+    color: #5c7f96;
+  }
+  .row{
+    padding-top: 30px;
   }
 </style>
